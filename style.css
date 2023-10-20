@@ -9,6 +9,7 @@ body {
     justify-content: center;
     flex-wrap: nowrap ;
     align-items: center;
+    overflow: hidden ;
 }
 video{
     position: fixed;
