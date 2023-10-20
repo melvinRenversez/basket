@@ -1,6 +1,8 @@
 var body = document.body;
+var tInfo = document.getElementById("exe")
 var box = document.getElementById("exe-text");
 var terrain = document.getElementById("terrain");
+var image = document.getElementById("image");
 var scoreBoard = document.getElementById("score");
 var zoneDes2PointLeft = document.getElementById("Zone2pointLeft");
 var zoneDes2PointRight = document.getElementById("Zone2pointReft");
@@ -26,6 +28,7 @@ var y = 0;
 var lx = 0;
 var ly = 0;
 
+var visible = true;
 
 Player.style.position = "absolute";
 Player.style.width = "10px";
@@ -131,12 +134,6 @@ function updateScore(){
         replacePlayer();
     }, 100)
 }
-
-function info(){
-    console.log("Baskets: " + basket );
-    console.log("Shot Value: " + shotValue);
-}
-
 function gameLoop() {
 
     txtScore = "Equipe1: " + score1 + " | " + score2 + ": Equipe2" 
@@ -155,5 +152,22 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 
 }
+
+document.addEventListener("keydown", function (e) {
+    if (e.key === "a"){
+        if (visible == true){
+            terrain.style.visibility = "hidden";
+            image.style.visibility = "hidden";
+            Player.style.visibility = "hidden";
+            tInfo.style.visibility = "hidden";
+        }else{
+            terrain.style.visibility = "visible";
+            image.style.visibility = "visible";
+            Player.style.visibility = "visible";
+            tInfo.style.visibility = "visible";
+        }
+        visible =!visible;
+    }
+})
 
 gameLoop();
