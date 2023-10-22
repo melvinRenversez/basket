@@ -17,9 +17,14 @@ var Z2Right = document.getElementById("Z2Right");
 
 var deuxPointLeft = false;
 var deuxPointRight = false; 
+
+var PlayerDeuxPointLeft = false;
+var PlayerDeuxPointRight = false;
+var lPlayerDeuxPointLeft = false;
+var lPlayerDeuxPointRight = false;
+
 var basket = 0;
 
-var lshotValue = 0;
 var shotValue = 0;
 
 var score1 = 0;
@@ -29,6 +34,8 @@ var x = 0;
 var y = 0;
 var lx = 0;
 var ly = 0;
+
+var buttonclick = false;
 
 var visible = true;
 
@@ -59,30 +66,80 @@ zoneDes2PointRight.addEventListener("mouseleave", function (e) {
 })
 
 document.addEventListener("click", function (e) {
-    if ( deuxPointLeft == true){
-        lshotValue = shotValue;
-        shotValue = 2;
-        deuxPointRight = false;
-    }
-    if ( deuxPointRight == true){
-        lshotValue = shotValue;
-        shotValue = 2;
-        deuxPointLeft = false;
-    }
-    if ( deuxPointLeft == false && deuxPointRight == false){
-        lshotValue = shotValue;
-        shotValue = 3;
+    console.log("clickede");
+
+    if(buttonclick == false){
+        PlayerDeuxPointLeft = false;
+        PlayerDeuxPointRight = false;
+    
+        if ( deuxPointLeft == true){
+            lPlayerDeuxPointLeft = true;
+            PlayerDeuxPointLeft = true;
+            lPlayerDeuxPointRight = false;
+            PlayerDeuxPointRight = false;
+        }
+        if (deuxPointRight == true){
+            lPlayerDeuxPointRight = true;
+            PlayerDeuxPointRight = true;
+            lPlayerDeuxPointLeft = false;
+            PlayerDeuxPointLeft = false;
+        }
+        if (deuxPointLeft == false && deuxPointRight == false){
+            lPlayerDeuxPointLeft = false;
+            lPlayerDeuxPointRight = false;
+            PlayerDeuxPointLeft = false;
+            PlayerDeuxPointRight = false;
+        }
+
+        if ( lPlayerDeuxPointLeft == true && basket == 1){
+            shotValue = 2;
+        }
+        if ( lPlayerDeuxPointRight == true && basket == 2){
+            shotValue = 2;
+        }
+        if ( lPlayerDeuxPointLeft == true && basket == 2){
+            shotValue = 3;
+        }
+        if ( lPlayerDeuxPointRight == true && basket == 1){
+            shotValue = 3;
+        }
+        if (lPlayerDeuxPointLeft == false && lPlayerDeuxPointRight == false){
+            shotValue = 3;
+        }
+    }else{
+        buttonclick = false;
+
+        if ( lPlayerDeuxPointLeft == true && basket == 1){
+            shotValue = 2;
+        }
+        if ( lPlayerDeuxPointRight == true && basket == 2){
+            shotValue = 2;
+        }
+        if ( lPlayerDeuxPointLeft == true && basket == 2){
+            shotValue = 3;
+        }
+        if ( lPlayerDeuxPointRight == true && basket == 1){
+            shotValue = 3;
+        }
+        if (lPlayerDeuxPointLeft == false && lPlayerDeuxPointRight == false){
+            shotValue = 3;
+        }
+
     }
 
     lx = x
     ly = y
     x = e.clientX;
     y = e.clientY;
-
+    
     updatePlayerPosition(x, y);
+
+    console.log("clicked finished");
 })
 
 function leftButton(){
+    buttonclick = true;
+    deuxPointLeft = true;
     basket = 1;
     updateBasket(1);
     setTimeout(function(){
@@ -90,6 +147,8 @@ function leftButton(){
     }, 100)
 }
 function rightButton(){
+    buttonclick = true;
+    deuxPointRight = true;
     basket = 2;
     updateBasket(2);
     setTimeout(function(){
@@ -123,7 +182,9 @@ function updatePlayerPosition(x, y){
 }
 
 function updateScore(){
-    shotValue = lshotValue;
+    buttonclick = true;
+    console.log("update score");    
+
     if (basket == 1){
         score2 += shotValue;
         basket = 0;
