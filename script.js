@@ -5,7 +5,7 @@ var terrain = document.getElementById("terrain");
 var image = document.getElementById("image");
 var scoreBoard = document.getElementById("score");
 var zoneDes2PointLeft = document.getElementById("Zone2pointLeft");
-var zoneDes2PointRight = document.getElementById("Zone2pointReft");
+var zoneDes2PointRight = document.getElementById("Zone2pointRight");
 
 var Player = document.createElement("div");
 
@@ -18,6 +18,8 @@ var Z2Right = document.getElementById("Z2Right");
 var deuxPointLeft = false;
 var deuxPointRight = false; 
 var basket = 0;
+
+var lshotValue = 0;
 var shotValue = 0;
 
 var score1 = 0;
@@ -58,14 +60,17 @@ zoneDes2PointRight.addEventListener("mouseleave", function (e) {
 
 document.addEventListener("click", function (e) {
     if ( deuxPointLeft == true){
+        lshotValue = shotValue;
         shotValue = 2;
         deuxPointRight = false;
     }
     if ( deuxPointRight == true){
+        lshotValue = shotValue;
         shotValue = 2;
         deuxPointLeft = false;
     }
     if ( deuxPointLeft == false && deuxPointRight == false){
+        lshotValue = shotValue;
         shotValue = 3;
     }
 
@@ -118,6 +123,7 @@ function updatePlayerPosition(x, y){
 }
 
 function updateScore(){
+    shotValue = lshotValue;
     if (basket == 1){
         score2 += shotValue;
         basket = 0;
