@@ -34,7 +34,7 @@ Player.style.position = "absolute";
 Player.style.width = "10px";
 Player.style.height = "10px";
 Player.style.background = "red";
-Player.style.left = "948px";
+Player.style.left = "955px";
 Player.style.top = "496px";
 body.appendChild(Player);
 
@@ -114,7 +114,7 @@ function updateBasket(name){
 }
 function updatePlayerPosition(x, y){
     Player.style.left = x - 5 + "px";
-    Player.style.top = y + 13 + "px";
+    Player.style.top = y - 5 + "px";
 }
 
 function updateScore(){
