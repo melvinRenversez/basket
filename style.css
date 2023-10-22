@@ -73,7 +73,6 @@ video{
 .Z2Left{
     position: absolute;
     border-radius: 100%;
-    background: rgba(0,0,0,0.5);
     height: 645px;
     width: 700px;
     top: 56px;
@@ -82,7 +81,6 @@ video{
 .Z2Right{
     position: absolute;
     border-radius: 100%;
-    background: rgba(0,0,0,0.5);
     height: 645px;
     width: 700px;
     top: 56px;
